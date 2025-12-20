@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+    
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+
+/*
+      function LoginForm(){
+        return(
+        <>
+          <p>
+            <input
+              placeholder='Email'
+              size='30'
+            />
+          </p>
+          <p>
+            <input
+              placeholder='pwd'
+              type='password'
+              size='30'
+            />
+          </p>
+          <button>Login</button>
+          <button>Sign up</button>
+        </>);
+      }
+*/
+
+/*
+      function App(){
+        return(
+          <>
+            <p>Welcome to my website</p>
+            <LoginForm/>
+          </>
+        );
+
+      }
+*/
+
+/*
+      function AfficheItem(){
+        return(
+          <>
+            <p>Cotton socks</p>
+            <p>Price: ${10}</p>  
+            <button>Add to cart</button>  
+          </>
+        );
+      }
+*/
+
+      function ProductDetail({name, price, discountPrice}){
+        return(
+          <>
+            <p>{name}</p>
+
+            {discountPrice ? (
+              <>  
+                <p><del> Price: ${price}</del></p>
+                <p>Discount price: $ {discountPrice}</p>
+              </>
+            ):(
+              <p>Price: $ {price}</p>
+
+            )}
+            
+            <button>Add to cart</button>    
+          </>
+        );
+      }
+
+
+      function App(){
+        return(
+          <>
+            <ProductDetail
+              name='Socks'
+              price='10'
+              discountPrice='5'
+            />
+            <ProductDetail
+              name='Tennis'
+              price='5'
+            /> 
+            <ProductDetail
+              name='Shirt'
+              price='20'
+            /> 
+          </>
+        );
+      }
+
+
+/*
+      const button = <button>Press button</button>;
+      const productCost = 20 + 8 * 2;
+      const shippingCost = 5;
+      const totalCost = productCost + shippingCost;
+
+      console.log(productCost);
+
+      const paragraph = <p>Product cost: ${productCost} </p>;
+
+      const cost =(
+        <div>
+          <p>Today is {dayjs().format('MMMM D')}</p>
+          <p>Current time {dayjs().format('MMMM D')}</p>
+
+          <p>Product cost: $ {productCost} </p>
+          <p>Shipping cost: $ {shippingCost} </p>
+          <p>Total cost: $ {productCost + shippingCost}</p>
+          <button>Place your order</button>
+        </div>
+      );
+
+
+      console.log(dayjs().format('MMMM D'));   
+*/
+
+      const container = document.querySelector('.js-container');
+      root = ReactDOM.createRoot(container).render(<App/>);
+
+
+    </script>
+  </body>
+</html>
