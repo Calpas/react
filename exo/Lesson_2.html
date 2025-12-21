@@ -61,23 +61,20 @@
       }
 */
 
-      function ProductDetail({name, price, discountPrice}){
+      function ProductDetail({name, price, discountPrice, imageSrc}){
         return(
-          <>
+          <div>
+            <img src={imageSrc} width='150'/>
             <p>{name}</p>
-
             {discountPrice ? (
               <>  
                 <p><del> Price: ${price}</del></p>
                 <p>Discount price: $ {discountPrice}</p>
-              </>
-            ):(
-              <p>Price: $ {price}</p>
-
-            )}
+              </> 
+            ):( <p>Price: $ {price}</p>)}
             
             <button>Add to cart</button>    
-          </>
+          </div>
         );
       }
 
@@ -85,19 +82,9 @@
       function App(){
         return(
           <>
-            <ProductDetail
-              name='Socks'
-              price='10'
-              discountPrice='5'
-            />
-            <ProductDetail
-              name='Tennis'
-              price='5'
-            /> 
-            <ProductDetail
-              name='Shirt'
-              price='20'
-            /> 
+            <ProductDetail name='Socks' price='10' discountPrice='5' imageSrc='/image/sock.png'/>
+            <ProductDetail name='Tennis' price='5' imageSrc='/image/ball.png'/> 
+            <ProductDetail name='Shirt' price='20' imageSrc='/image/shirt.png'/> 
           </>
         );
       }
