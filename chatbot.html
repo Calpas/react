@@ -17,72 +17,69 @@
       function ChatInput(){
         return(
           <>
-            <input 
-              placeholder='Enter a message' 
-              size='30'
-            />
+            <input placeholder='Enter a message' size='30'/>
             <button>Send</button>
           </>
         );
       }
 
       function ChatMessage({message, sender}){
-        // const message = props.message;
-        // const sender = props.sender; 
-        //const{message, sender} = props;
-
-        /*
-        if (sender == 'robot'){
-          return(
-            <div>
-              <img src='/image/robot.png' width='40'/>
-              {message}
-            </div>
-          );
-        }
-        */  
-
         return(
           <div>
-            {sender == 'robot' && (
-              <img src='/image/robot.png' width='40'/>
-            )}
+            {sender == 'robot' && (<img src='/image/robot.png' width='40'/>)}
             {message}
-            {sender == 'user' && (
-              <img src='/image/user.png' width='40'/>
-            )}
+            {sender == 'user' && (<img src='/image/user.png' width='40'/>)}
           </div>
-        
         );
-
-
       }
 
+      function ChatMessages(){
+        const array = React.useState([{message:'Hello', sender:'user', id:'id1'},
+                                      {message:'Hi, ar r u?', sender:'robot', id:'id2'},
+                                      {message:'fine & u', sender:'user', id:'id3'},
+                                      {message:'Thx', sender:'robot', id:'id4'}]);
+
+        const chatMessages = array[0];
+        const setChatMessages = array[1];
+       
+
+
+        function sendMessage(){
+          setChatMessages([
+            ...chatMessages,
+            {
+              message:'test',
+              sender:'user',
+              id:crypto.randomUUID()
+            }
+          ]);
+        }
+
+
+        return(
+          <>    
+          
+          <button onClick={sendMessage}>Send message</button>
+
+            {chatMessages.map((chatMessage)=>{
+              return(<ChatMessage 
+                      message={chatMessage.message} 
+                      sender={chatMessage.sender}
+                      key={chatMessage.id}/>);
+            })} 
+          </>
+        );
+      }
 
       function App(){
         return(
           <>
-          <ChatInput/>
-          <ChatMessage 
-            message='Hello' 
-            sender='user'
-          />
-          <ChatMessage 
-            message='Hi, ar r u?' 
-            sender='robot'
-          />
-          <ChatMessage 
-            message='fine & u?' 
-            sender='user'
-          />
-          <ChatMessage 
-            message='Thx' 
-            sender='robot'
-          />
+            <ChatInput/>
+            <ChatMessages/>
           </>
         );
-
       }
+
 
       const container = document.querySelector('.js-container');
       const root = ReactDOM.createRoot(container);
